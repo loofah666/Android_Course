@@ -1,5 +1,3 @@
-# Android_Course
-
 ## Week 1 (MyApplication)
 
 此Project主要是用來深入了解callback functions  
