@@ -2,7 +2,8 @@
     <string name="app_name">IntentActivity</string>
     <string name="action_settings">Settings</string>
 
-    <string name="main_text_view">Intent Practices:</string>
+    <string name="main_title1">Intent Practices:</string>
+    <string name="main_title2">Camera Result (thumbnail):</string>
     <string name="title_activity_email_intent">EmailIntentActivity</string>
 
 </resources>

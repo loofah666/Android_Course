@@ -8,32 +8,35 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends ActionBarActivity {
     private static final int CAMERA_CODE = 360;
-    private ImageView cameraImage;
+    public ImageView cameraImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        cameraImage = (ImageView) findViewById(R.id.main_image_view);
     }
 
-    public void goToCamera(){
+    public void goToCamera(View view){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent chooser = Intent.createChooser(intent, "Choose Camera");
         if (intent.resolveActivity(getPackageManager()) != null)
-            startActivityForResult(intent, CAMERA_CODE);
+            startActivityForResult(chooser, CAMERA_CODE);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == CAMERA_CODE){
-            if(resultCode == RESULT_OK){
+        if(requestCode == CAMERA_CODE && (resultCode == RESULT_OK)){
                 Uri uri = data.getData();
                 Bitmap bmp = (Bitmap) data.getExtras().get("data");
-                if(bmp!=null)
+                if(bmp!=null) {
                     cameraImage.setImageBitmap(bmp);
-            }
+                }
         }
     }
 
