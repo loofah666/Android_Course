@@ -32,8 +32,8 @@ public class MainActivity extends ActionBarActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == CAMERA_CODE && (resultCode == RESULT_OK)){
-                Uri uri = data.getData();
-                Bitmap bmp = (Bitmap) data.getExtras().get("data");
+                Bundle bundle = data.getExtras();
+                Bitmap bmp = (Bitmap) bundle.get("data");
                 if(bmp!=null) {
                     cameraImage.setImageBitmap(bmp);
                 }
