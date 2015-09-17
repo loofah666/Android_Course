@@ -1,17 +1,18 @@
 package com.asus.peggy_lin.intentactivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
+//import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
     private static final int CAMERA_CODE = 360;
     public ImageView cameraImage;
 
@@ -21,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         cameraImage = (ImageView) findViewById(R.id.main_image_view);
+
     }
 
     public void goToCamera(View view){
@@ -38,6 +40,14 @@ public class MainActivity extends ActionBarActivity {
                     cameraImage.setImageBitmap(bmp);
                 }
         }
+    }
+
+    //toggle ActionBar by clicking on Layout
+    public void toggleActionBar(View view){
+        if(getActionBar().isShowing())
+            getActionBar().hide();
+        else
+            getActionBar().show();
     }
 
     @Override

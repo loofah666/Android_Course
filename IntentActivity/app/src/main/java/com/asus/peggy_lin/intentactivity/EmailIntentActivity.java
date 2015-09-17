@@ -1,10 +1,11 @@
 package com.asus.peggy_lin.intentactivity;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+//import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class EmailIntentActivity extends ActionBarActivity {
+public class EmailIntentActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
