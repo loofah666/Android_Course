@@ -32,6 +32,10 @@ public class MainActivity extends Activity {
             startActivityForResult(chooser, CAMERA_CODE);
     }
 
+    public void goToEmail(View view){
+
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == CAMERA_CODE && (resultCode == RESULT_OK)){
                 Bundle bundle = data.getExtras();
