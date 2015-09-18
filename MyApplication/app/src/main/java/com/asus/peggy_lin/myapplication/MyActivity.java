@@ -132,4 +132,9 @@ public class MyActivity  extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
 }
