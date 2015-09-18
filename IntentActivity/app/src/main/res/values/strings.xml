@@ -3,7 +3,12 @@
     <string name="action_settings">Settings</string>
 
     <string name="main_title1">Intent Practices:</string>
-    <string name="main_title2">Photo Thumbnail::</string>
+    <string name="main_title2">Photo Thumbnail:</string>
     <string name="title_activity_email_intent">EmailIntentActivity</string>
+    <string name="profile_action">choose action:</string>
 
+    <string-array name="profile_array">
+        <item>Take Photo</item>
+        <item>Choose Photo</item>
+    </string-array>
 </resources>
