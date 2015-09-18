@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IntentActivity</string>
+    <string name="action_settings">設定</string>
+
+    <string name="main_title1">Intent 練習:</string>
+    <string name="main_title2">照片結果(縮圖):</string>
+    <string name="title_activity_email_intent">EmailIntentActivity</string>
+
+</resources>
