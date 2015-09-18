@@ -16,7 +16,9 @@ import android.widget.Toast;
 public class MyActivity  extends ActionBarActivity {
 
     public final static String EXTRA_MESSAGE = " com.asus.peggy_lin.myapplication.MESSAGE";
+    public TextView textView;
     public int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,7 @@ public class MyActivity  extends ActionBarActivity {
 //            count = savedInstanceState.getInt("COUNT");
 
         //每次翻轉螢幕就累加一次count
-        TextView textView = (TextView) findViewById(R.id.text_message);
+        textView = (TextView) findViewById(R.id.text_message);
         textView.setText("翻轉第"+count+"次");
 
     }
@@ -68,47 +70,45 @@ public class MyActivity  extends ActionBarActivity {
     }
     @Override
     protected void onResume() {
+        super.onResume();
+        // The activity has become visible (it is now "resumed").
+        //翻轉螢幕次數
+        textView.setText("翻轉第"+count+"次");
+
         CharSequence text = "onResume()";
         int time = Toast.LENGTH_SHORT;
         Toast.makeText(getApplicationContext(), text, time).show();
-
-        //顯示翻轉次數
-        TextView textView = (TextView) findViewById(R.id.text_message);
-        textView.setText("翻轉第" + count + "次");
-
-        super.onResume();
-        // The activity has become visible (it is now "resumed").
     }
     @Override
     protected void onPause() {
+        super.onPause();
         // Another activity is taking focus (this activity is about to be "paused").
         CharSequence text = "onPause()";
         int time = Toast.LENGTH_SHORT;
         Toast.makeText(getApplicationContext(), text, time).show();
-        super.onPause();
     }
     @Override
     protected void onStop() {
+        super.onStop();
         // The activity is no longer visible (it is now "stopped")
         CharSequence text = "onStop()";
         int time = Toast.LENGTH_SHORT;
         Toast.makeText(getApplicationContext(), text, time).show();
-        super.onStop();
     }
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         // The activity is about to be destroyed.
         CharSequence text = "onDestroy()";
         int time = Toast.LENGTH_SHORT;
         Toast.makeText(getApplicationContext(), text, time).show();
-        super.onDestroy();
     }
     @Override
     protected void onRestart() {
+        super.onRestart();
         CharSequence text = "onRestart()";
         int time = Toast.LENGTH_SHORT;
         Toast.makeText(getApplicationContext(), text, time).show();
-        super.onRestart();
     }
 
     @Override
