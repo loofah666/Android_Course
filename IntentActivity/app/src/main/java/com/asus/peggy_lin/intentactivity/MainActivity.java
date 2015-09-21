@@ -30,6 +30,8 @@ public class MainActivity extends Activity {
         cameraImage = (ImageView) findViewById(R.id.main_camera_view);
         profileImage = (ImageView) findViewById(R.id.main_profile_view);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     public void goToCamera(View view){
@@ -116,11 +118,12 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id){
+            case R.id.action_settings:
+                return true;
+            case R.id.action_search:
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
