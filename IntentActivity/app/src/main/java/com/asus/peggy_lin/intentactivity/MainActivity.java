@@ -9,6 +9,8 @@ import android.os.Build;
 import android.provider.MediaStore;
 //import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
