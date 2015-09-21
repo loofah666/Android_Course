@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private static final int CAMERA_CODE = 360;
+    private static final int CAMERA_CODE2 = 361;
     public ImageView cameraImage, profileImage;
 
     @Override
@@ -44,7 +45,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         Intent chooser = Intent.createChooser(intent, "Choose Camera");
         if (intent.resolveActivity(getPackageManager()) != null)
-            startActivityForResult(chooser, CAMERA_CODE);
+            startActivityForResult(chooser, CAMERA_CODE2);
     }
 
     public void goToEmail(View view){
@@ -57,8 +58,15 @@ public class MainActivity extends Activity {
                 Bitmap bmp = (Bitmap) bundle.get("data");
                 if(bmp!=null) {
                     cameraImage.setImageBitmap(bmp);
-                    profileImage.setImageBitmap(bmp);
+                    //profileImage.setImageBitmap(bmp);
                 }
+        }if(requestCode == CAMERA_CODE2 && (resultCode == RESULT_OK)){
+            Bundle bundle = data.getExtras();
+            Bitmap bmp = (Bitmap) bundle.get("data");
+            if(bmp!=null) {
+                //cameraImage.setImageBitmap(bmp);
+                profileImage.setImageBitmap(bmp);
+            }
         }
     }
 
@@ -120,8 +128,20 @@ public class MainActivity extends Activity {
 
         switch(id){
             case R.id.action_settings:
+                Toast.makeText(getApplicationContext(), R.string.action_settings, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_search:
+                Toast.makeText(getApplicationContext(), R.string.action_search, Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_edit:
+                Toast.makeText(getApplicationContext(), R.string.action_edit, Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_camera:
+                Toast.makeText(getApplicationContext(), R.string.action_camera, Toast.LENGTH_SHORT).show();
+                goToCamera();
+                return true;
+            case R.id.action_email:
+                Toast.makeText(getApplicationContext(), R.string.action_email, Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
