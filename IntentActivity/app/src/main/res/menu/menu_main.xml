@@ -33,6 +33,7 @@
             android:title="@string/action_edit"
             android:titleCondensed="Edit"
             android:icon="@drawable/ic_mode_edit_white_24dp"
-            android:showAsAction="ifRoom"/>
+            android:showAsAction="ifRoom"
+            android:orderInCategory="4"/>
 
     </menu>
