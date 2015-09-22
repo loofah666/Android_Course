@@ -6,7 +6,6 @@
     <string name="action_camera">拍照</string>
     <string name="action_email">電子郵件</string>
 
-    <string name="main_title1">Intent 練習:</string>
     <string name="main_title2">照片結果(縮圖):</string>
     <string name="title_activity_email_intent">EmailIntentActivity</string>
     <string name="profile_action">選擇動作</string>

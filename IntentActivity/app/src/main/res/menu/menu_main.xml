@@ -26,11 +26,12 @@
         android:titleCondensed="@string/action_settings"
         android:icon="@drawable/ic_settings_white_24dp"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        android:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_edit"
         android:title="@string/action_edit"
         android:titleCondensed="Edit"
-        android:showAsAction="never"/>
+        android:icon="@drawable/ic_mode_edit_white_24dp"
+        android:showAsAction="ifRoom"/>
 
 </menu>

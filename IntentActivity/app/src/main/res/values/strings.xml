@@ -6,7 +6,6 @@
     <string name="action_camera">Take Photo</string>
     <string name="action_email">Email</string>
 
-    <string name="main_title1">Intent Practices:</string>
     <string name="main_title2">Photo Thumbnail:</string>
     <string name="title_activity_email_intent">EmailIntentActivity</string>
     <string name="profile_action">choose action:</string>
