@@ -22,6 +22,9 @@ public class MyActivity  extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CharSequence text = "onCreate()";
+        int time = Toast.LENGTH_SHORT;
+        Toast.makeText(getApplicationContext(), text, time).show();
         setContentView(R.layout.activity_my);
 
         //在onCreate取得savedInstanceState
