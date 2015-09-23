@@ -17,19 +17,19 @@
         <item name="android:background">@color/darkcyan</item>
     </style>
     <!-- ActionBarTab styles -->　
-    <style name="MyActionBarTab"
+    <style
+        name="MyActionBarTab"
         parent="@android:style/Widget.Holo.ActionBar.TabView">
         <item name="android:background">@drawable/actionbar_tab_indicator</item>
     </style>
     <!-- Bar styles -->　
-    <style name="MyActionBarTabBar"
+    <style
+        name="MyActionBarTabBar"
         parent="@android:style/Widget.Holo.ActionBar.TabBar">
         <item name="android:background">@color/darkcyan</item>
-        <item name="android:showDividers">middle</item>
-        <item name="android:dividerPadding">0dp</item>
+        <!--
+        <item name="android:showDividers">none</item> 　
+        <item name="android:dividerPadding">0dp</item>   -->
     </style>
 
-
-
-
-</resources>
+    </resources>

@@ -28,7 +28,8 @@ public class MainActivity  extends FragmentActivity implements ActionBar.TabList
 
         mActionBar = getActionBar();
         //don't enable UP Nav
-        mActionBar.setHomeButtonEnabled(false);
+        //mActionBar.setHomeButtonEnabled(false);
+
         //Displays Tabs
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
