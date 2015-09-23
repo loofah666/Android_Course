@@ -3,7 +3,7 @@
     <string name="action_settings">設定</string>
     <string name="action_search">搜尋</string>
 
-    <string name="section_1">寵物</string>
+    <string name="section_1">寵物首頁</string>
     <string name="section_2">狗</string>
     <string name="section_3">貓</string>
     <string name="section_other">其他</string>

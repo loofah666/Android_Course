@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -71,6 +72,7 @@ public class MainActivity  extends FragmentActivity implements ActionBar.TabList
     }
 
     public  class AppSectionsAdapter extends FragmentPagerAdapter {
+    //public  class AppSectionsAdapter extends FragmentStatePagerAdapter {    //not fixed
         public AppSectionsAdapter(FragmentManager fm) {
             super(fm);
         }
