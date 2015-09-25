@@ -3,9 +3,11 @@
 
     <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
     </style>
+    <style name="MyMaterialTheme2" parent="MyMaterialTheme2.Base">
+    </style>
 
     <!-- 各API通用的基底theme -->
-    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat">
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <!-- 不需要 ActionBar 了,因為改用Toolbar -->
         <item name="windowActionBar">false</item>
@@ -20,6 +22,24 @@
 
     <style name="MyMaterialPopupTheme">
         <item name="android:colorBackground">@color/color_accent</item>
+        <item name="android:textColor">@color/color_primary_text</item>
+    </style>
+
+    <!-- 其他Activity使用的theme -->
+    <style name="MyMaterialTheme2.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="colorPrimary">@color/color_primary2</item>
+        <item name="colorPrimaryDark">@color/color_primaryDark2</item>
+        <item name="colorAccent">@color/color_accent2</item>
+        <item name="android:textColor">@color/color_text</item>
+        <item name="android:textColorPrimary">@color/color_primary_text</item>
+        <item name="android:windowBackground">@color/color_window_background</item>
+    </style>
+
+    <style name="MyMaterialPopupTheme2">
+        <item name="android:colorBackground">@color/color_text</item>
         <item name="android:textColor">@color/color_primary_text</item>
     </style>
 </resources>

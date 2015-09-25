@@ -32,6 +32,7 @@ public class MainActivity  extends FragmentActivity implements ActionBar.TabList
         //mActionBar.setHomeButtonEnabled(false);
 
         //Displays Tabs
+        //if bar not null
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // adapter that returns fragments
@@ -120,6 +121,8 @@ public class MainActivity  extends FragmentActivity implements ActionBar.TabList
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_section_dummy, container, false);
             Bundle args = getArguments();
+
+            //first view, then if not null set text
             ((TextView) rootView.findViewById(android.R.id.text1)).setText(
                     getString(R.string.dummy_section_text, args.getInt(ARG_SECTION_NUMBER)));
             return rootView;

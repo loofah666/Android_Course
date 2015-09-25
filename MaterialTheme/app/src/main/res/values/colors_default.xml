@@ -16,4 +16,10 @@
     <color name="color_navigation_bar">#727272</color>
 
     <color name="color_action_icons_tint">@color/md_pink_400</color>
+
+
+
+    <color name="color_primary2">@color/md_pink_400</color>
+    <color name="color_primaryDark2">@color/md_pink_900</color>
+    <color name="color_accent2">@color/md_cyan_500</color>
 </resources>

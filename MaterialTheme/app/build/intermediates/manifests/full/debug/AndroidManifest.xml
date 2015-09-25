@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.asus.peggy_lin.materialtheme.ToolBarTabs"
+            android:theme="@style/MyMaterialTheme2" >
+        </activity>
     </application>
 
 </manifest>

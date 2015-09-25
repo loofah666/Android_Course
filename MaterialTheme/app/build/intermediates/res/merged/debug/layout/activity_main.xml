@@ -13,29 +13,40 @@
         layout="@layout/toolbar" />
 
     <TextView
-        android:text="@string/hello_world"
+        android:text="@string/text_view_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25sp"
         android:padding="10dp"/>
 
     <CheckBox
+        android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New CheckBox"
-        android:id="@+id/checkBox"
+        android:layout_margin="5dp"
         android:textColor="@color/color_text"/>
     <CheckBox
+        android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New CheckBox2"
-        android:id="@+id/checkBox2"
+        android:layout_margin="5dp"
         android:textColor="@color/color_text"/>
     <CheckBox
+        android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New CheckBox3"
-        android:id="@+id/checkBox3"
+        android:layout_margin="5dp"
         android:textColor="@color/color_text"/>
+
+    <Button
+        android:id="@+id/btn_tool_bar_tabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToTabs"
+        android:text="@string/btn_tool_bar_tabs"/>
 
 
 </LinearLayout>
