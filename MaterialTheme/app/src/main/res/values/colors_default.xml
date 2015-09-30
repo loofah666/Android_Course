@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base Theme -->
     <color name="color_primary">@color/md_teal_500</color>
     <color name="color_primaryDark">@color/md_teal_700</color>
     <color name="color_primaryLight">@color/md_teal_100</color>
@@ -10,16 +11,24 @@
     <color name="color_icons">@android:color/white</color>
     <color name="color_divider">#B6B6B6</color>
     <color name="color_window_background">@android:color/white</color>
-
+    <!-- Base Theme v21 -->
     <color name="color_control_normal">@color/md_grey_900</color>
     <color name="color_control_highlight">@color/md_teal_A400</color>
     <color name="color_navigation_bar">#727272</color>
 
-    <color name="color_action_icons_tint">@color/md_pink_400</color>
-
-
-
+    <!-- Second Theme -->
     <color name="color_primary2">@color/md_pink_400</color>
     <color name="color_primaryDark2">@color/md_pink_900</color>
+    <color name="color_primaryLight2">@color/md_pink_100</color>
     <color name="color_accent2">@color/md_cyan_500</color>
+    <color name="color_primary_text2">@color/md_white_1000</color>
+    <color name="color_secondary_text2">#727272</color>
+    <color name="color_text2">@android:color/white</color>
+    <color name="color_icons2">@android:color/white</color>
+    <color name="color_divider2">#B6B6B6</color>
+    <color name="color_window_background2">@android:color/black</color>
+    <!-- Second Theme v21 -->
+    <color name="color_control_normal2">@android:color/white</color>
+    <color name="color_control_highlight2">@color/md_purple_500</color>
+    <color name="color_navigation_bar2">#727272</color>
 </resources>

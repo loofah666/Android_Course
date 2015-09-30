@@ -1,7 +1,5 @@
 package com.asus.peggy_lin.materialtheme;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -28,15 +26,6 @@ public class MainActivity extends ActionBarActivity {
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Inflate a menu to be displayed in the toolbar
-//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                // Handle the menu item
-//                return true;
-//            }
-//        });
-//        toolbar.inflateMenu(R.menu.menu_main);
     }
 
     public void goToTabs(View view) {
@@ -65,4 +54,6 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
