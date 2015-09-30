@@ -39,6 +39,7 @@ public class ToolBarTabs extends ActionBarActivity {
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_tabs);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void initViewPager() {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
