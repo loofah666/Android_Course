@@ -17,7 +17,7 @@
     </style>
 
     <style name="MyMaterialPopupTheme">
-        <item name="android:colorBackground">@color/color_accent</item>
+        <item name="android:colorBackground">?attr/colorAccent</item>
         <item name="android:textColor">@color/color_primary_text</item>
     </style>
 

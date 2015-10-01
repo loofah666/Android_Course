@@ -1,13 +1,16 @@
 package com.asus.peggy_lin.materialtheme;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -26,14 +29,50 @@ public class ToolBarTabs extends ActionBarActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
+    static String tagMain = "TOOLBAR_MAIN";
+    static String tagFrag = "TOOLBAR_FRAG";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i(tagMain, "onCreate()............");
         setContentView(R.layout.toolbartabs);
 
         initToolbar();
         initViewPager();
         initTabLayout();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(tagMain, "onResume()............");
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(tagMain, "onStart()............");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(tagMain, "onPause()............");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(tagMain, "onStop()............");
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(tagMain, "onRestart()............");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(tagMain, "onDestroy()............");
     }
 
     private void initToolbar() {
@@ -45,16 +84,22 @@ public class ToolBarTabs extends ActionBarActivity {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setupViewPager(viewPager);
     }
+
     private void initTabLayout() {
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        //below not working...
+        //tabLayout.getTabAt(1).setCustomView(R.layout.tabview);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new DummySectionFragment(), "CAT");
-        adapter.addFrag(new DummySectionFragment(), "DOG");
-        adapter.addFrag(new DummySectionFragment(), "MOUSE");
+        adapter.addFrag(new DummySection2Fragment(), "RAT");
+        adapter.addFrag(new DummySection3Fragment(), "I LOVE DOGS");
+        adapter.addFrag(new DummySectionFragment(), "DISNEY MICKEY_MOUSE LOVES EVERYONE");
+        adapter.addFrag(new DummySection2Fragment(), "ASUS LAUNCHER YEAH");
+        adapter.addFrag(new DummySection3Fragment(), "ASUS LAUNCHER YEAH");
         viewPager.setAdapter(adapter);
     }
 
@@ -104,31 +149,11 @@ public class ToolBarTabs extends ActionBarActivity {
         }
     }
 
-    public static class DummySectionFragment extends Fragment {
-        public static final String ARG_SECTION_NUMBER = "section_number";
-        public static final String ARG_SECTION_COLOR = "section_color";
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            Bundle args = getArguments();
-
-            View view = inflater.inflate(R.layout.fragment_section_dummy, container, false);
-            final FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.frag_frame_layout);
-            frameLayout.setBackgroundColor(args.getInt(ARG_SECTION_COLOR));
-
-            ((TextView) view.findViewById(android.R.id.text1)).setText(
-                    getString(R.string.dummy_section_text, args.getInt(ARG_SECTION_NUMBER)));
-
-            return view;
-
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 }
