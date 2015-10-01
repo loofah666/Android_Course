@@ -2,15 +2,13 @@ package com.asus.peggy_lin.materialtheme;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
-    private Button btn_tool_bar_tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +16,12 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         initToolbar();
-
-        btn_tool_bar_tabs = (Button) findViewById(R.id.btn_tool_bar_tabs);
-
     }
 
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if(toolbar != null)
+            setSupportActionBar(toolbar);
     }
 
     public void goToTabs(View view) {

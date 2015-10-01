@@ -35,7 +35,7 @@ public class DummySection3Fragment extends Fragment {
         Bundle args = getArguments();
 
         View view = inflater.inflate(R.layout.fragment_section_dummy, container, false);
-        final FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.frag_frame_layout);
+        FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.frag_frame_layout);
         frameLayout.setBackgroundColor(args.getInt(ARG_SECTION_COLOR));
 
         ((TextView) view.findViewById(android.R.id.text1)).setText(

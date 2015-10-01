@@ -11,12 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +25,6 @@ public class ToolBarTabs extends ActionBarActivity {
     private TabLayout tabLayout;
 
     static String tagMain = "TOOLBAR_MAIN";
-    static String tagFrag = "TOOLBAR_FRAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,17 +71,21 @@ public class ToolBarTabs extends ActionBarActivity {
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_tabs);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(toolbar != null){
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
     private void initViewPager() {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        setupViewPager(viewPager);
+        if(viewPager != null)
+            setupViewPager(viewPager);
     }
 
     private void initTabLayout() {
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
+        if(tabLayout != null && viewPager != null)
+            tabLayout.setupWithViewPager(viewPager);
         //below not working...
         //tabLayout.getTabAt(1).setCustomView(R.layout.tabview);
     }
