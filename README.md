@@ -13,3 +13,7 @@ BarTab for swipe的實作 (ViewPager, )
 ### MaterialTheme
 Toolbar的實作練習 (toolbar, Styling, Tint)
 CoordinatorLayout + AppBarLayout + TabLayout + ViewPager with Fragment
+Fragment callbacks (for week 3)
+
+### FragmentPractice
+Fragment的實作練習 (Transaction)
