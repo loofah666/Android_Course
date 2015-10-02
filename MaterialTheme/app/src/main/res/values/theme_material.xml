@@ -29,7 +29,7 @@
         <item name="colorAccent">@color/color_accent2</item>
         <item name="android:textColor">@color/color_text2</item>
         <item name="android:textColorPrimary">@color/color_primary_text2</item>
-        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowBackground">@color/md_blue_grey_700</item>
     </style>
 
 </resources>
