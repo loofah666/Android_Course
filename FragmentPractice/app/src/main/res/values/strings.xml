@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">FragmentPractice</string>
-    <string name="text_view_main">Material AppBar~</string>
-    <string name="btn_frag_prac">Fragment Prac</string>
-
-    <string name="action_search">Search</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_edit">Edit</string>
-</resources>
