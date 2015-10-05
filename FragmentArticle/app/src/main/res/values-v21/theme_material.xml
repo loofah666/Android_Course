@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+        <item name="android:colorControlNormal">@color/color_control_normal</item>
+        <item name="android:colorControlHighlight">@color/color_control_highlight</item>
+        <item name="android:navigationBarColor">@color/color_navigation_bar</item>
+    </style>
+
+</resources>
