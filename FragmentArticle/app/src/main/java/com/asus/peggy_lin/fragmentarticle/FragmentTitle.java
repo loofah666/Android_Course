@@ -65,7 +65,7 @@ public class FragmentTitle extends ListFragment {
         }
         else{
             Intent intent = new Intent(getActivity(), FragmentContentActivity.class);
-            intent.putExtra("Postion", position);
+            intent.putExtra("Position", position);
             startActivity(intent);
         }
     }
