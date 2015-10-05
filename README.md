@@ -15,5 +15,7 @@ Toolbar的實作練習 (toolbar, Styling, Tint)
 CoordinatorLayout + AppBarLayout + TabLayout + ViewPager with Fragment
 Fragment callbacks (for week 3)
 
-### FragmentPractice
-Fragment的實作練習 (Transaction)
+## Week 3 (FragmentArticle)
+
+### FragmentArticle
+Fragment的實作練習 (portrait V.S. landscape)
