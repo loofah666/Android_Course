@@ -17,5 +17,4 @@ Fragment callbacks (for week 3)
 
 ## Week 3 (FragmentArticle)
 
-### FragmentArticle
 Fragment的實作練習 (portrait V.S. landscape)
