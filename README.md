@@ -7,12 +7,12 @@
 ## Week 2 (ActionBarTab + MaterialTheme)
 
 ### ActionBarTab
-ActionBar的實作練習 (showAsAction, Styling, Overlay)
+ActionBar的實作練習 (showAsAction, Styling, Overlay)  
 BarTab for swipe的實作 (ViewPager, )
 
 ### MaterialTheme
-Toolbar的實作練習 (toolbar, Styling, Tint)
-CoordinatorLayout + AppBarLayout + TabLayout + ViewPager with Fragment
+Toolbar的實作練習 (toolbar, Styling, Tint)  
+CoordinatorLayout + AppBarLayout + TabLayout + ViewPager with Fragment  
 Fragment callbacks (for week 3)
 
 ## Week 3 (FragmentArticle)
