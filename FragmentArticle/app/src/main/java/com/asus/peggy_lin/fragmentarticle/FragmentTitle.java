@@ -1,12 +1,15 @@
 package com.asus.peggy_lin.fragmentarticle;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 
 /**
@@ -15,10 +18,23 @@ import android.widget.ListView;
 public class FragmentTitle extends ListFragment {
     boolean isLand;
     int cursorPosition = 0;
+    static String tagFrag = "FRAG_frag";
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.i(tagFrag, "onAttach()............");
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.i(tagFrag, "onCreate()............");
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.i(tagFrag, "onActivityCreated()............");
 
         setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, Literature.Titles));
 
@@ -35,6 +51,43 @@ public class FragmentTitle extends ListFragment {
             showDetails(cursorPosition);
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(tagFrag, "onResume()............");
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(tagFrag, "onStart()............");
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(tagFrag, "onPause()............");
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(tagFrag, "onStop()............");
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.i(tagFrag, "onDestroyView()............");
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(tagFrag, "onDestroy()............");
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.i(tagFrag, "onDetach()............");
+    }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -59,7 +112,7 @@ public class FragmentTitle extends ListFragment {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fr_content, fr_content);
                 //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                //transaction.addToBackStack(null);
+                ft.addToBackStack(null);
                 ft.commit();
             }
         }
