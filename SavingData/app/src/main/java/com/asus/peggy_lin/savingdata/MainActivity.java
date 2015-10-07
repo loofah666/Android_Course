@@ -9,12 +9,14 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
     TextView tv_def;
     EditText et;
     Button btn_save, btn_delete;
+    LinearLayout layout_new, layout_old;
     String sharedPreferenceName = null;
 
     @Override
@@ -38,12 +40,13 @@ public class MainActivity extends Activity {
         et = (EditText) findViewById(R.id.save_data_edit_text);
         btn_save = (Button) findViewById(R.id.save_data_btn_save);
         btn_delete = (Button) findViewById(R.id.save_data_btn_delete);
+        layout_new = (LinearLayout) findViewById(R.id.layout_new_user);
+        layout_old = (LinearLayout) findViewById(R.id.layout_old_user);
 
         if(tv_def.getVisibility() == View.VISIBLE && sharedPreferenceName != "") {
             tv_def.setText("Hello, " + sharedPreferenceName);
-            et.setVisibility(View.GONE);
-            btn_save.setVisibility(View.GONE);
-            btn_delete.setVisibility(View.VISIBLE);
+            layout_new.setVisibility(View.GONE);
+            layout_old.setVisibility(View.VISIBLE);
         }else if (sharedPreferenceName == "")
             tv_def.setText("Welcome, you're new!");
         else if(tv_def.getVisibility() != View.VISIBLE)
@@ -70,6 +73,10 @@ public class MainActivity extends Activity {
         sharedPref.edit().remove(getString(R.string.saved_name_str)).commit();
 
         recreate();
+    }
+
+    public void saveTextFile(View view){
+        
     }
 
 }

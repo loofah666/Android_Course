@@ -14,34 +14,70 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp"
         android:textSize="30sp"
-        android:textColor="@android:color/holo_blue_dark"/>
+        android:textColor="@color/color_primary_text"/>
 
-    <EditText
-        android:id="@+id/save_data_edit_text"
-        android:hint="@string/edit_text_hint"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:textSize="24sp"/>
+    <LinearLayout
+        android:id="@+id/layout_new_user"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
-    <Button
-        android:id="@+id/save_data_btn_save"
-        android:text="@string/btn_save"
-        android:onClick="saveSharedPreference"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/save_data_edit_text"
+            android:hint="@string/edit_text_hint"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/color_secondary_text"
+            android:textSize="24sp"/>
 
-    <Button
-        android:id="@+id/save_data_btn_delete"
-        android:text="@string/btn_delete"
-        android:onClick="deleteSharedPreference"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        <Button
+            android:id="@+id/save_data_btn_save"
+            android:text="@string/btn_save"
+            android:onClick="saveSharedPreference"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_old_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/save_data_btn_delete"
+            android:text="@string/btn_delete"
+            android:onClick="deleteSharedPreference"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:hint="@string/edit_text_hint_blog"
+            android:layout_marginTop="30dp"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            android:background="@drawable/edittext_style"
+            android:textColor="@color/color_secondary_text"/>
+        <Button
+            android:id="@+id/save_file_btn_save"
+            android:text="@string/btn_save_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="saveTextFile"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+
 
 
 </LinearLayout>
