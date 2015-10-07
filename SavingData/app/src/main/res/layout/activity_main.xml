@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:textColor="@color/color_secondary_text"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            android:imeActionLabel="@string/btn_save_file"/>
 
         <Button
             android:id="@+id/save_data_btn_save"
@@ -68,7 +69,8 @@
             android:gravity="top|left"
             android:scrollbars="vertical"
             android:background="@drawable/edittext_style"
-            android:textColor="@color/color_secondary_text"/>
+            android:textColor="@color/color_secondary_text"
+            android:imeActionLabel="@string/btn_save_file" />
         <Button
             android:id="@+id/save_file_btn_save"
             android:text="@string/btn_save_file"
