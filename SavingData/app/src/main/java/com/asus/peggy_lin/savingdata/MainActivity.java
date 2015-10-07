@@ -7,41 +7,63 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-TextView tv_def;
-String sharedPreferenceName = null;
+    TextView tv_def;
+    EditText et;
+    Button btn_save;
+    String sharedPreferenceName = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        //why use this?
+        //Context context = this;
+
+        //shared preferences when multi files
+        //SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        //preference when only one activity uses
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        //remove key for testing purpose
+        //sharedPref.edit().remove(getString(R.string.saved_name_str)).commit();
+
         String defaultValue = "";
         sharedPreferenceName = sharedPref.getString(getString(R.string.saved_name_str), defaultValue);
 
         tv_def = (TextView) findViewById(R.id.save_data_text_view);
-        if(tv_def.getVisibility() == View.VISIBLE && sharedPreferenceName != null)
-            tv_def.setText("Hello, " + sharedPreferenceName);
+        et = (EditText) findViewById(R.id.save_data_edit_text);
+        btn_save = (Button) findViewById(R.id.save_data_btn_save);
 
+        if(tv_def.getVisibility() == View.VISIBLE && sharedPreferenceName != "") {
+            tv_def.setText("Hello, " + sharedPreferenceName);
+            et.setVisibility(View.INVISIBLE);
+            btn_save.setVisibility(View.INVISIBLE);
+        }else if (sharedPreferenceName == "")
+            tv_def.setText("Welcome, you're new!");
+        else if(tv_def.getVisibility() != View.VISIBLE)
+            recreate();
     }
 
     public void saveSharedPreference(View view){
-        EditText et = (EditText) findViewById(R.id.save_data_edit_text);
         String newNameStr = et.getText().toString();
 
-        Context context = this;
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//        Context context = this;
+//        SharedPreferences sharedPref = getSharedPreferences(
+//                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.saved_name_str), newNameStr);
         editor.commit();
 
-        Intent intent = new Intent(this, SavePreference.class);
-        startActivity(intent);
+        recreate();
     }
 
 }

@@ -4,7 +4,6 @@
     <string name="edit_text_hint">enter your username</string>
 
     <string name="btn_save">GO</string>
-    <string name="btn_show">Show Name</string>
 
     <string name="preference_file_key">preferenceName</string>
     <string name="saved_name_str">preferenceName</string>
