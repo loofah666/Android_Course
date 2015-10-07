@@ -34,5 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/save_data_btn_delete"
+        android:text="@string/btn_delete"
+        android:onClick="deleteSharedPreference"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
 
 </LinearLayout>
