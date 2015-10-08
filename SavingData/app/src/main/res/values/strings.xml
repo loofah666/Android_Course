@@ -8,6 +8,7 @@
     <string name="btn_save">GO</string>
     <string name="btn_delete">Clear User</string>
     <string name="btn_save_file">Save File</string>
+    <string name="btn_edit_file">Delete File</string>
 
     <string name="preference_file_key">preferenceName</string>
     <string name="saved_name_str">preferenceName</string>
