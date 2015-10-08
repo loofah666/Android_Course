@@ -16,5 +16,8 @@ CoordinatorLayout + AppBarLayout + TabLayout + ViewPager with Fragment
 Fragment callbacks (for week 3)
 
 ## Week 3 (FragmentArticle)
-
 Fragment的實作練習 (portrait V.S. landscape)
+
+## Week 4 (SaveData)
+Saving Data 的實作練習 (sharedPreferences + Internal Storage)  
+
