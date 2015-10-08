@@ -112,7 +112,10 @@ public class FragmentTitle extends ListFragment {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fr_content, fr_content);
                 //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
+
+                //parameter name for transaction, inifinite back action, not often used!
+                //ft.addToBackStack(null);
+
                 ft.commit();
             }
         }

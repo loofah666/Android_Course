@@ -94,20 +94,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone">
-
-            <TextView
-                android:id="@+id/save_file_text_view"
-                android:layout_marginTop="30dp"
-                android:padding="8dp"
-                android:inputType="textMultiLine"
-                android:lines="8"
+            <!-- A CardView that contains a TextView -->
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top|left"
-                android:scrollbars="vertical"
-                android:background="@drawable/textview_style"
-                android:textColor="@color/color_secondary_text"
-                android:textSize="18sp"/>
+                card_view:cardCornerRadius="4dp"
+                card_view:cardBackgroundColor ="@android:color/white">
+
+                <TextView
+                    android:id="@+id/save_file_text_view"
+                    android:padding="8dp"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/color_secondary_text"
+                    android:textSize="18sp"/>
+            </android.support.v7.widget.CardView>
+
             <Button
                 android:id="@+id/save_file_btn_edit"
                 android:text="@string/btn_edit_file"

@@ -131,6 +131,7 @@ public class MainActivity extends Activity {
 
     public void delTextFile(View view){
         new File(getFilesDir(), filename).delete();
+
         recreate();
     }
 }
