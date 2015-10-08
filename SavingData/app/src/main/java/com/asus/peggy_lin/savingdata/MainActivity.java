@@ -2,12 +2,11 @@ package com.asus.peggy_lin.savingdata;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,15 +14,12 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 
 public class MainActivity extends Activity {
     TextView tv_def, tv_show;
-    EditText et_user, et_blog;
+    EditText et_user, et_write;
     String filename = "userFile";
     String fileData = "";
     String userBlog = "";
@@ -54,22 +50,16 @@ public class MainActivity extends Activity {
         layout_write = (LinearLayout) findViewById(R.id.layout_blog_write);
         layout_show = (LinearLayout) findViewById(R.id.layout_blog_show);
 
-        if(tv_def.getVisibility() == View.VISIBLE && sharedPreferenceName != "") {
-            tv_def.setText("Hello, " + sharedPreferenceName);
-            et_blog = (EditText) findViewById(R.id.save_file_edit_text);
-            layout_new.setVisibility(View.GONE);
-            layout_old.setVisibility(View.VISIBLE);
+        if(sharedPreferenceName != "") {
+            oldUser(sharedPreferenceName);
 
             File file = new File(getFilesDir(), filename);
-            if(file.exists()){
-                layout_write.setVisibility(View.GONE);
-                layout_show.setVisibility(View.VISIBLE);
+            if(file.exists())
                 readFile();
-            }
-        }else if (sharedPreferenceName == "")
-            tv_def.setText("Welcome, you're new!");
-        else if(tv_def.getVisibility() != View.VISIBLE)
-            recreate();
+            else if(!file.exists())
+                editFile();
+        }else
+            newUser();
     }
 
     public void saveSharedPreference(View view){
@@ -85,19 +75,33 @@ public class MainActivity extends Activity {
         editor.putString(getString(R.string.saved_name_str), newNameStr);
         editor.commit();
 
-        recreate();
+        oldUser(newNameStr);
+        editFile();
     }
 
     public void deleteSharedPreference(View view){
+        delTextFile(view);
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         sharedPref.edit().remove(getString(R.string.saved_name_str)).commit();
 
-        delTextFile(view);
+        newUser();
+    }
 
-        recreate();
+    public void newUser(){
+        layout_new.setVisibility(View.VISIBLE);
+        layout_old.setVisibility(View.GONE);
+        tv_def.setText("Welcome, you're new!");
+    }
+    public void oldUser(String sharedPreferenceName){
+        layout_old.setVisibility(View.VISIBLE);
+        layout_new.setVisibility(View.GONE);
+        tv_def.setText("Hello, " + sharedPreferenceName);
     }
 
     public void readFile(){
+        layout_write.setVisibility(View.GONE);
+        layout_show.setVisibility(View.VISIBLE);
+
         StringBuilder sb = new StringBuilder();
         try{
             FileInputStream inputStream = openFileInput(filename);
@@ -115,9 +119,16 @@ public class MainActivity extends Activity {
         tv_show.setText(sb.toString());
     }
 
+    public void editFile(){
+        layout_write.setVisibility(View.VISIBLE);
+        layout_show.setVisibility(View.GONE);
+    }
+
     public void saveTextFile(View view){
         FileOutputStream outputStream;
-        userBlog = et_blog.getText().toString();
+
+        et_write = (EditText) findViewById(R.id.save_file_edit_text);
+        userBlog = et_write.getText().toString();
 
         try {
             outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
@@ -126,12 +137,11 @@ public class MainActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        recreate();
+        readFile();
     }
 
     public void delTextFile(View view){
         new File(getFilesDir(), filename).delete();
-
-        recreate();
+        editFile();
     }
 }
