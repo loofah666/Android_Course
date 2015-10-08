@@ -52,15 +52,27 @@
             android:id="@+id/layout_old_user"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/save_data_btn_delete"
-                android:text="@string/btn_delete"
-                android:onClick="deleteSharedPreference"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/save_data_btn_delete"
+                    android:text="@string/btn_delete"
+                    android:onClick="deleteSharedPreference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btn_show_pic"
+                    android:text="@string/btn_show_pic"
+                    android:onClick="goToShowExternal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layout_blog_write"
