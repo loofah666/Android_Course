@@ -1,11 +1,14 @@
 package com.asus.peggy_lin.savingdata;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.File;
 
@@ -13,6 +16,7 @@ public class ShowExternal extends Activity {
 
     String LOG_EXT = "EXTERNAL_STORAGE";
     String LOG_FILES = "EXTERNAL_FILES";
+    TextView tv;
     ListView lv;
     ArrayAdapter adapter;
 
@@ -54,7 +58,10 @@ public class ShowExternal extends Activity {
     }
 
     public void getAlbumStorageDir() {
-        //get DCIM/Camera directory path
+        //PRIVATE FILES: get external directory for this app only
+        //File file = new File(getExternalFilesDir(null), "Text.txt");
+
+        //PUBLIC FILES: get DCIM/Camera directory path
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM + "/Camera").toString();
         File file = new File(path);
 

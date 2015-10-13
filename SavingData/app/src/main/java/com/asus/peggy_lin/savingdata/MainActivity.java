@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
     TextView tv_def, tv_show;
     EditText et_user, et_write;
     String filename = "userFile";
+    String TAG_MAIN = "TAG_MAIN";
     String fileData, userBlog, sharedPreferenceName = "";
     LinearLayout layout_new, layout_old, layout_write, layout_show;
 
@@ -57,10 +58,13 @@ public class MainActivity extends Activity {
             oldUser(sharedPreferenceName);
 
             File file = new File(getFilesDir(), filename);
+            Long result = file.getFreeSpace()/1048576;
+            Log.d(TAG_MAIN, result.toString()+"MB");
+
             if(file.exists())
                 //if intro text is saved before
                 readFile();
-            else if(!file.exists())
+            else
                 //if intro text is not found
                 editFile();
         }else
