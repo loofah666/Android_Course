@@ -13,4 +13,16 @@
 
     <string name="preference_file_key">preferenceName</string>
     <string name="saved_name_str">preferenceName</string>
+
+    <string name="friends_edit_tv_title">Add a new friend</string>
+    <string name="friends_list_tv">Your Friends</string>
+    <string name="friends_edit_tv_name">Name</string>
+    <string name="friends_edit_tv_gender">Gender</string>
+    <string name="friends_edit_tv_phone">Phone</string>
+    <string name="friends_edit_tv_fav">Favourite</string>
+    <string name="friends_edit_btn_enter">Save</string>
+    <string name="friends_edit_radio_girl">Girl</string>
+    <string name="friends_edit_radio_boy">Boy</string>
+
+
 </resources>

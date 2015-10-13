@@ -74,6 +74,7 @@ public class ShowExternal extends Activity {
         //list array of files in directory
         File file_list[] = file.listFiles();
 
+
         for (int i = 0; i < file_list.length; i++) {
             adapter.add(file_list[i].getName());
             Log.d(LOG_FILES, "FileName:" + file_list[i].getName());

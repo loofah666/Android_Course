@@ -174,6 +174,11 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, ShowExternal.class);
         startActivity(intent);
     }
+    public void goToFriends(View view){
+        //go to External Storage Practice
+        Intent intent = new Intent(this, ShowFriends.class);
+        startActivity(intent);
+    }
 
 
 
