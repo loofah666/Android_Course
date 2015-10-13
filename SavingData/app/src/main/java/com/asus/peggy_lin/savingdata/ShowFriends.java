@@ -10,17 +10,18 @@ import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
+
 
 public class ShowFriends extends Activity {
 
     private FriendDBHelper mDbHelper;
     private SQLiteDatabase db_read;
     ListView lv;
-    ArrayAdapter adapter;
+    //ArrayAdapter adapter;
+    FriendAdapter adapter;
     String TAG_FRIEND = "FRIEND_READ";
 
     @Override
@@ -30,11 +31,16 @@ public class ShowFriends extends Activity {
 
         mDbHelper = new FriendDBHelper(this);
 
+        // Construct the data source
+        ArrayList<Friend> arrayOfFriends = new ArrayList<Friend>();
+        // Create the adapter to convert the array to views
+        adapter = new FriendAdapter(this, arrayOfFriends);
+        // Attach the adapter to a ListView
+
         lv = (ListView) findViewById(R.id.friends_list_view);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1);
+//        adapter = new ArrayAdapter(this, R.layout.friend_list);
         lv.setAdapter(adapter);
 
-        //writeNewFriend();
         showFriendList();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.friend_fab);
@@ -51,7 +57,10 @@ public class ShowFriends extends Activity {
         db_read = mDbHelper.getReadableDatabase();
 
         String[] q_friend = {
-                FriendDB.FriendList.COLUMN_NAME_NAME };
+                FriendDB.FriendList.COLUMN_NAME_NAME,
+                FriendDB.FriendList.COLUMN_NAME_GENDER,
+                FriendDB.FriendList.COLUMN_NAME_PHONE,
+                FriendDB.FriendList.COLUMN_NAME_FAV};
 
         Cursor cursor = db_read.query(
                 FriendDB.FriendList.TABLE_NAME,  // The table to query
@@ -63,12 +72,17 @@ public class ShowFriends extends Activity {
                 null                                 // The sort order
         );
 
-        if(cursor!= null && cursor.getCount() == 0)
-            adapter.add("You have 0 Friends");
+        if(cursor!= null && cursor.getCount() == 0){
+            Friend noFriend = new Friend("You have no Friends", null, null, null);
+            adapter.add(noFriend);
+        }
         else if(cursor!= null){
             if (cursor.moveToFirst()) {
                 do {
-                    adapter.add(cursor.getString(0));
+                    // Add item to adapter
+                    Friend newFriend = new Friend(cursor.getString(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3));
+                    adapter.add(newFriend);
+
                 } while (cursor.moveToNext());
             }
         }
