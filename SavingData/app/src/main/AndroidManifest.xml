@@ -21,6 +21,10 @@
         </activity>
         <activity android:name=".ShowExternal" >
         </activity>
+        <activity android:name=".ShowFriends" >
+        </activity>
+        <activity android:name=".FriendEdit" >
+        </activity>
     </application>
 
 </manifest>
