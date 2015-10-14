@@ -5,9 +5,10 @@ package com.asus.peggy_lin.savingdata;
  */
 public class Friend {
     public String name, phone, fav;
-    public Integer gender;
+    public Integer id, gender;
 
-    public Friend(String name, Integer gender, String phone, String fav) {
+    public Friend(Integer id, String name, Integer gender, String phone, String fav) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.phone = phone;

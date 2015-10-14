@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/friends_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:overScrollMode="never">
+    </android.support.v7.widget.RecyclerView>
 
-        <TextView
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/toolbar_show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/friends_list_tv"
-            android:textSize="24dp"
-            android:textColor="?attr/colorAccent"/>
-
-        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/friends_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp">
-        </ListView>
-
-    </LinearLayout>
+            android:layout_alignParentTop="true"
+            layout="@layout/toolbar"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/friend_fab"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_mode_edit_white_24dp"/>
+        android:src="@drawable/ic_mode_edit_white_24dp"
+        android:onClick="goToAddFriend"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -12,6 +12,7 @@
         android:theme="@style/MyMaterialTheme" >
         <activity
             android:name=".MainActivity"
+            android:label="@string/label_main"
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +22,15 @@
         </activity>
         <activity android:name=".ShowExternal" >
         </activity>
-        <activity android:name=".ShowFriends" >
+        <activity
+            android:name=".ShowFriends"
+            android:label="@string/label_show"
+            android:parentActivityName=".MainActivity" >
         </activity>
-        <activity android:name=".FriendEdit" >
+        <activity android:name=".FriendAdd" >
+        </activity>
+        <activity android:name=".FriendEdit"
+            android:label="@string/label_edit" >
         </activity>
     </application>
 

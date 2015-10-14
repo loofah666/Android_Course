@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -19,7 +22,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
+    Toolbar toolbar;
     TextView tv_def, tv_show;
     EditText et_user, et_write;
     String filename = "userFile";
@@ -32,10 +36,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initToolbar();
+
         //why use this?
         //Context context = this;
 
         //shared preferences when multi files
+        //key static final, no need for string
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         //preference when only one activity uses
@@ -70,6 +77,14 @@ public class MainActivity extends Activity {
         }else
             //first time using
             newUser();
+    }
+
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        if(toolbar != null){
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
     }
 
     public void saveSharedPreference(View view){
@@ -180,6 +195,13 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
 
 
 }

@@ -6,6 +6,7 @@
         <item name="android:windowNoTitle">true</item>
         <!-- 不需要 ActionBar 了,因為改用Toolbar -->
         <item name="windowActionBar">false</item>
+        <item name="android:windowActionBarOverlay">true</item>
 
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primaryDark</item>
@@ -17,7 +18,7 @@
 
     <style name="MyMaterialPopupTheme">
         <item name="android:colorBackground">?attr/colorAccent</item>
-        <item name="android:textColor">@color/color_primary_text</item>
+        <item name="android:textColor">@color/color_text</item>
     </style>
 
 </resources>

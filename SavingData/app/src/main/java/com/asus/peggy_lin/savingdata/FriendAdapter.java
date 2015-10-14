@@ -42,16 +42,26 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
             Drawable d = getContext().getResources().getDrawable(R.drawable.ic_person_white_24dp);
 
             if(friend.gender>0){
-                d.setColorFilter(getContext().getResources().getColor(R.color.md_pink_200), PorterDuff.Mode.SRC_IN);
+                //setTint is for v21
+                d.setTint(getContext().getResources().getColor(R.color.md_pink_200));
                 iv_gender.setBackground(d);
             }
             else{
-                d.setColorFilter(getContext().getResources().getColor(R.color.md_blue_200), PorterDuff.Mode.SRC_IN);
+                d.setTint(getContext().getResources().getColor(R.color.md_blue_200));
                 iv_gender.setBackground(d);
             }
 
+            convertView.setOnLongClickListener(new LongClick());
+
             // Return the completed view to render on screen
             return convertView;
+        }
+
+        class LongClick implements View.OnLongClickListener{
+            public boolean onLongClick(View view) {
+
+                return true;
+            }
         }
 }
 
