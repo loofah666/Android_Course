@@ -23,10 +23,16 @@
             android:layout_weight="1"
             android:gravity="left">
             <ImageView
-                android:id="@+id/list_gender"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scaleType="fitCenter"/>
+            android:id="@+id/list_gender"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"/>
+            <TextView
+                android:id="@+id/list_gender_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:visibility="invisible"/>
         </LinearLayout>
 
     </LinearLayout>

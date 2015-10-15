@@ -3,6 +3,7 @@ package com.asus.peggy_lin.savingdata;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -30,7 +33,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder  {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView tvName, tvPhone, tvFav;
+        public TextView tvName, tvPhone, tvFav, tvGender;
         public ImageView ivGender;
         public View mView;
 
@@ -42,6 +45,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
             tvName = (TextView) convertView.findViewById(R.id.list_name);
             tvPhone = (TextView) convertView.findViewById(R.id.list_phone);
             tvFav = (TextView) convertView.findViewById(R.id.list_fav);
+            tvGender = (TextView) convertView.findViewById(R.id.list_gender_tv);
             ivGender = (ImageView) convertView.findViewById(R.id.list_gender);
         }
     }
@@ -70,6 +74,8 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         // Get the data model based on position
         final Friend friend = mFriends.get(position);
 
+
+
         // Set item views based on the data model
         TextView tv_name = viewHolder.tvName;
             tv_name.setText(friend.name);
@@ -77,18 +83,33 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
             tv_phone.setText(friend.phone);
         TextView tv_fav = viewHolder.tvFav;
             tv_fav.setText(friend.fav);
+        TextView tv_gender = viewHolder.tvGender;
         ImageView iv_gender = viewHolder.ivGender;
 
         Drawable d = mContext.getResources().getDrawable(R.drawable.ic_person_white_24dp);
 
         if(friend.gender>0){
             //setTint is for v21
-            d.setTint(mContext.getResources().getColor(R.color.md_pink_200));
-            iv_gender.setBackground(d);
+            Log.d(TAG_ADAPTER, "SDK_INT: "+Build.VERSION.SDK_INT);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                d.setTint(mContext.getResources().getColor(R.color.md_pink_200));
+                iv_gender.setBackground(d);
+            } else {
+                iv_gender.setVisibility(View.INVISIBLE);
+                tv_gender.setVisibility(View.VISIBLE);
+                tv_gender.setText("Girl");
+            }
+
         }
         else{
-            d.setTint(mContext.getResources().getColor(R.color.md_blue_200));
-            iv_gender.setBackground(d);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                d.setTint(mContext.getResources().getColor(R.color.md_blue_200));
+                iv_gender.setBackground(d);
+            } else {
+                iv_gender.setVisibility(View.INVISIBLE);
+                tv_gender.setVisibility(View.VISIBLE);
+                tv_gender.setText("Boy");
+            }
         }
 
         viewHolder.mView.setOnClickListener(new View.OnClickListener() {
