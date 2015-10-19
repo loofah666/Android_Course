@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">IntentP</string>
+    <string name="group_title">Adopt</string>
     <string name="large_text">
-        "Material is the metaphor.\n\n"
+        "After a dog leaves the shelter, "
+        "we love to hear stories and see pictures of how they are doing in their new homes. "
+        "Check out our new "Happy Endings" photo album featuring dogs who have been adopted "
+        "from the Franklin County Dog Shelter, "
+        "and see how happy they look now that they have found a forever home. "
+        "If you have adopted a dog from us and would like to be featured in our album, "
+        "message us a photo of your dog and tell us how they are doing!"
+        "Material is the metaphor.\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
         "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
@@ -90,4 +98,20 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="action_email">Email</string>
+    <string name="action_send">Send</string>
+
+    <string name="info_annual_event">
+        "<b>Year Annual Event</b>"
+        "December 31"
+        "We welcome all adopters and pets"
+        "to celebrate the new life!"
+    </string>
+
+    <string name="chooser_email">Email with:</string>
+    <string name="email_address">bluepeg66@gmail.com</string>
+    <string name="email_subject">Reservation for Adoption</string>
+    <string name="email_text">"Hi, I'd like to book a reservation for one of the dogs at your center!"</string>
+
+    <string name="text_text">"Recommend you this awesome Adoption Center!"</string>
 </resources>

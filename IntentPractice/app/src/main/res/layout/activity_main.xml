@@ -11,15 +11,27 @@
         android:layout_width="match_parent" >
 
         <android.support.design.widget.CollapsingToolbarLayout android:id="@+id/toolbar_layout"
-            android:fitsSystemWindows="true" android:layout_width="match_parent"
-            android:layout_height="match_parent" app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginEnd="64dp">
+
+            <ImageView
+                android:src="@drawable/puppy"
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                android:minHeight="100dp"/>
 
             <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-                android:layout_height="?attr/actionBarSize" android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
                 app:layout_collapseMode="pin"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/MyMaterialPopupTheme" />
+                app:popupTheme="@style/MyMaterialPopupTheme"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -29,6 +41,6 @@
     <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin" app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" android:src="@android:drawable/ic_dialog_email" />
+        app:layout_anchorGravity="bottom|end" android:src="@drawable/ic_email_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
