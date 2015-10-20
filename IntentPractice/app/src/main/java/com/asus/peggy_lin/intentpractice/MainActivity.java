@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_INTENT = "INTENT_PRAC";
     public static final int PICK_CONTACT_REQUEST = 1;  // The request code
-    private Toolbar toolbar;
+    private Toolbar toolbar, toolbar_bottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initToolbar();
+
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        collapsingToolbarLayout.setTitle(getString(R.string.group_title));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +52,11 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setTitle(getString(R.string.group_title));
+        toolbar_bottom = (Toolbar) findViewById(R.id.toolbar_bottom);
+        if(toolbar_bottom != null){
+            setSupportActionBar(toolbar_bottom);
+            toolbar_bottom.inflateMenu(R.menu.menu_bottom);
+        }
     }
 
     public void goToNewPost(){
@@ -58,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToEmail(){
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        // The intent does not have a URI, so declare the "text/plain" MIME type
-        emailIntent.setType("text/plain");
         String[] mail = {getString(R.string.email_address)};
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, mail);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
         emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_text));
@@ -70,40 +76,24 @@ public class MainActivity extends AppCompatActivity {
         String title = getResources().getString(R.string.chooser_email);
         Intent chooser = Intent.createChooser(emailIntent, title);
 
-        // Verify it resolves
-        PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> activities = packageManager.queryIntentActivities(chooser, 0);
-        boolean isIntentSafe = activities.size() > 0;
-
-        // Start an activity if it's safe
-        if (isIntentSafe) {
-            startActivity(chooser);
-        }
+        startIntent(chooser);
     }
 
     public void goToCalendar(View view){
-//        Log.d(TAG_INTENT, "calendar");
-        Intent calendarIntent = new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         Calendar beginTime = Calendar.getInstance();
         beginTime.set(year, 11, 31, 8, 30);  //month is 0~11, 11=December
         Calendar endTime = Calendar.getInstance();
         endTime.set(year, 11, 31, 18, 30);
+
+        Intent calendarIntent = new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis());
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis());
         calendarIntent.putExtra(CalendarContract.Events.TITLE, "Adoption Center Year Annual Event");
         calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Adoption Center");
 
-        // Verify it resolves
-        PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> activities = packageManager.queryIntentActivities(calendarIntent, 0);
-        boolean isIntentSafe = activities.size() > 0;
-
-        // Start an activity if it's safe
-        if (isIntentSafe) {
-            startActivity(calendarIntent);
-        }
+        startIntent(calendarIntent);
     }
 
     public void goToContacts(){
@@ -119,14 +109,20 @@ public class MainActivity extends AppCompatActivity {
         textIntent.putExtra("sms_body", getString(R.string.text_text));
 //        textIntent.putExtra(Intent.EXTRA_STREAM, attachment);
 
-        // Verify it resolves
+        startIntent(textIntent);
+    }
+
+    public void startIntent(Intent intent){
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(intent);
+//        }
+
         PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> activities = packageManager.queryIntentActivities(textIntent, 0);
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
         boolean isIntentSafe = activities.size() > 0;
 
-        // Start an activity if it's safe
         if (isIntentSafe) {
-            startActivity(textIntent);
+            startActivity(intent);
         }
     }
 
@@ -136,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 // Get the URI that points to the selected contact
                 Uri contactUri = data.getData();
+                Log.d(TAG_INTENT, "data.getData: " + contactUri);
                 String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
 
                 Cursor cursor = getContentResolver()
@@ -144,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Retrieve the phone number from the NUMBER column
                 int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                Log.d(TAG_INTENT, "column int: " + Integer.toString(column));
                 String number = cursor.getString(column);
 
                 Log.d(TAG_INTENT, "number: " + number);
@@ -154,28 +152,37 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         switch(id){
             case R.id.action_settings:
                 return true;
-            case R.id.action_email:
+            case R.id.action_edit:
                 goToNewPost();
                 return true;
             case R.id.action_send:
                 goToContacts();
                 return true;
         }
+
+        toolbar_bottom.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_edit_bottom:
+                        return true;
+                    case R.id.action_camera_bottom:
+                        return true;
+                }
+                return true;
+            }
+        });
 
         return super.onOptionsItemSelected(item);
     }

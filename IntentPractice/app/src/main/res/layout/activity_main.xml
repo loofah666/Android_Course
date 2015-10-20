@@ -34,6 +34,7 @@
                 app:popupTheme="@style/MyMaterialPopupTheme"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />
@@ -43,4 +44,15 @@
         android:layout_margin="@dimen/fab_margin" app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" android:src="@drawable/ic_email_white_24dp" />
 
+    <android.support.design.widget.AppBarLayout android:id="@+id/app_bar_bottom"
+        android:fitsSystemWindows="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent" >
+        <android.support.v7.widget.Toolbar android:id="@+id/toolbar_bottom"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            app:layout_collapseMode="pin"
+            android:background="@color/color_primary" />
+    </android.support.design.widget.AppBarLayout>
 </android.support.design.widget.CoordinatorLayout>
