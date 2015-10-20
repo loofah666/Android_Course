@@ -12,6 +12,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.internal.view.menu.MenuBuilder;
+import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_INTENT = "INTENT_PRAC";
     public static final int PICK_CONTACT_REQUEST = 1;  // The request code
     private Toolbar toolbar, toolbar_bottom;
+    private ActionMenuView amvMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +57,24 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar_bottom = (Toolbar) findViewById(R.id.toolbar_bottom);
         if(toolbar_bottom != null){
-            setSupportActionBar(toolbar_bottom);
-            toolbar_bottom.inflateMenu(R.menu.menu_bottom);
+            amvMenu = (ActionMenuView) findViewById(R.id.amvMenu_bottom);
+            amvMenu.getMenu().clear();
+            getMenuInflater().inflate(R.menu.menu_bottom, amvMenu.getMenu());
+
+            amvMenu.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    switch (menuItem.getItemId()) {
+                        case R.id.action_edit_bottom:
+                            Log.d(TAG_INTENT, "action_edit_bottom");
+                            return true;
+                        case R.id.action_camera_bottom:
+                            Log.d(TAG_INTENT, "action_camera_bottom");
+                            return true;
+                    }
+                    return onOptionsItemSelected(menuItem);
+                }
+            });
         }
     }
 
@@ -170,19 +189,6 @@ public class MainActivity extends AppCompatActivity {
                 goToContacts();
                 return true;
         }
-
-        toolbar_bottom.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_edit_bottom:
-                        return true;
-                    case R.id.action_camera_bottom:
-                        return true;
-                }
-                return true;
-            }
-        });
 
         return super.onOptionsItemSelected(item);
     }

@@ -7,6 +7,7 @@
         android:icon="@drawable/ic_mode_edit_white_24dp"
         android:orderInCategory="3"
         app:showAsAction="ifRoom" />
+
     <item android:id="@+id/action_camera_bottom"
         android:title="@string/action_camera"
         android:icon="@drawable/ic_photo_camera_white_24dp"

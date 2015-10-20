@@ -25,7 +25,9 @@ public class FragmentContentActivity extends Activity {
             // During initial setup, plug in the details fragment.
             FragmentContent fc = new FragmentContent();
             fc.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction().add(android.R.id.content, fc).commit();
+            getFragmentManager().beginTransaction()
+                    .add(android.R.id.content, fc)
+                    .commit();
         }
     }
 }
