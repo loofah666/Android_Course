@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
@@ -23,6 +24,8 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        SearchView searchView = (SearchView) findViewById(R.id.layout_searchview);
+//        searchView.setIconifiedByDefault(true);
 
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
@@ -71,8 +76,14 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.menu_bottom, amvMenu.getMenu());
 
             editText = (EditText) findViewById(R.id.layout_edittext);
-            Log.d(TAG_INTENT, "et-width: " + editText.getWidth());
-            //editText.setMaxWidth(editText.getWidth());
+            editText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int etw = editText.getWidth();
+                    editText.setMaxWidth(etw);
+                    editText.setWidth(etw);
+                }
+            });
 
             amvMenu.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
                 @Override
@@ -80,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (menuItem.getItemId()) {
                         case R.id.action_send_bottom:
                             Log.d(TAG_INTENT, "action_send_bottom");
+                            savePostText();
                             return true;
                         case R.id.action_camera_bottom:
                             Log.d(TAG_INTENT, "action_camera_bottom");
@@ -91,8 +103,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void goToNewPost(){
-
+    public void savePostText(){
+        String post = editText.getText().toString();
+        Log.d(TAG_INTENT, post);
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        editText.setText("");
+        editText.setHint(R.string.edittext_hint);
     }
 
     public void goToEmail(){
@@ -192,11 +210,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch(id){
+        switch(id) {
             case R.id.action_settings:
                 return true;
             case R.id.action_share:
-                goToNewPost();
+                savePostText();
                 return true;
             case R.id.action_send:
                 goToContacts();

@@ -118,4 +118,5 @@
     <string name="email_text">"Hi, I'd like to book a reservation for one of the dogs at your center!"</string>
 
     <string name="text_text">"Recommend you this awesome Adoption Center!"</string>
+    <string name="edittext_hint">write something here...</string>
 </resources>
