@@ -1,5 +1,6 @@
 package com.asus.peggy_lin.intentpractice;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -12,13 +13,17 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.internal.view.menu.MenuBuilder;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_INTENT = "INTENT_PRAC";
     public static final int PICK_CONTACT_REQUEST = 1;  // The request code
     private Toolbar toolbar, toolbar_bottom;
+    private EditText editText;
     private ActionMenuView amvMenu;
 
     @Override
@@ -47,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
                 goToEmail();
             }
         });
+
+
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     private void initToolbar() {
@@ -61,12 +70,16 @@ public class MainActivity extends AppCompatActivity {
             amvMenu.getMenu().clear();
             getMenuInflater().inflate(R.menu.menu_bottom, amvMenu.getMenu());
 
+            editText = (EditText) findViewById(R.id.layout_edittext);
+            Log.d(TAG_INTENT, "et-width: " + editText.getWidth());
+            //editText.setMaxWidth(editText.getWidth());
+
             amvMenu.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     switch (menuItem.getItemId()) {
-                        case R.id.action_edit_bottom:
-                            Log.d(TAG_INTENT, "action_edit_bottom");
+                        case R.id.action_send_bottom:
+                            Log.d(TAG_INTENT, "action_send_bottom");
                             return true;
                         case R.id.action_camera_bottom:
                             Log.d(TAG_INTENT, "action_camera_bottom");
@@ -182,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         switch(id){
             case R.id.action_settings:
                 return true;
-            case R.id.action_edit:
+            case R.id.action_share:
                 goToNewPost();
                 return true;
             case R.id.action_send:

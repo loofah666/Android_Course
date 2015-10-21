@@ -13,7 +13,8 @@
         android:theme="@style/MyMaterialTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/group_title" >
+            android:label="@string/group_title"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

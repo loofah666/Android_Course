@@ -102,6 +102,8 @@
     <string name="action_send">Send</string>
     <string name="action_edit">Edit</string>
     <string name="action_camera">Photo</string>
+    <string name="action_share">Share</string>
+    <string name="action_write">write something...</string>
 
     <string name="info_annual_event">
         "<b>Year Annual Event</b>"
