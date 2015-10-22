@@ -1,5 +1,6 @@
 package com.asus.peggy_lin.intentpractice;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
@@ -71,36 +73,41 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar_bottom = (Toolbar) findViewById(R.id.toolbar_bottom);
         if(toolbar_bottom != null){
-            amvMenu = (ActionMenuView) findViewById(R.id.amvMenu_bottom);
-            amvMenu.getMenu().clear();
-            getMenuInflater().inflate(R.menu.menu_bottom, amvMenu.getMenu());
+            //initToolbarBottom();
 
-            editText = (EditText) findViewById(R.id.layout_edittext);
-            editText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int etw = editText.getWidth();
-                    editText.setMaxWidth(etw);
-                    editText.setWidth(etw);
-                }
-            });
-
-            amvMenu.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    switch (menuItem.getItemId()) {
-                        case R.id.action_send_bottom:
-                            Log.d(TAG_INTENT, "action_send_bottom");
-                            savePostText();
-                            return true;
-                        case R.id.action_camera_bottom:
-                            Log.d(TAG_INTENT, "action_camera_bottom");
-                            return true;
-                    }
-                    return onOptionsItemSelected(menuItem);
-                }
-            });
         }
+    }
+
+    public void initToolbarBottom(){
+//        amvMenu = (ActionMenuView) findViewById(R.id.amvMenu_bottom);
+//        amvMenu.getMenu().clear();
+//        getMenuInflater().inflate(R.menu.menu_bottom, amvMenu.getMenu());
+//
+//        editText = (EditText) findViewById(R.id.layout_edittext);
+//        editText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int etw = editText.getWidth();
+//                editText.setMaxWidth(etw);
+//                editText.setWidth(etw);
+//            }
+//        });
+//
+//        amvMenu.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem menuItem) {
+//                switch (menuItem.getItemId()) {
+//                    case R.id.action_send_bottom:
+//                        Log.d(TAG_INTENT, "action_send_bottom");
+//                        savePostText();
+//                        return true;
+//                    case R.id.action_camera_bottom:
+//                        Log.d(TAG_INTENT, "action_camera_bottom");
+//                        return true;
+//                }
+//                return onOptionsItemSelected(menuItem);
+//            }
+//        });
     }
 
     public void savePostText(){
