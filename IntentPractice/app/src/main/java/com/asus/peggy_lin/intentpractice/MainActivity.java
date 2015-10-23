@@ -20,7 +20,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_INTENT = "INTENT_PRAC";
     public static final int PICK_CONTACT_REQUEST = 1;  // The request code
-    private Toolbar toolbar, toolbar_bottom;
-    private EditText editText;
-//    private ActionMenuView amvMenu;
-    private ImageView imageViewCamera, imageViewSend;
+
+    private Toolbar mToolbar, mToolbarBottom;
+    private EditText mEditText;
+    private ImageView mImageViewCamera, mImageViewSend;
     private RecyclerView mRecyclerView;
     private MyRecyclerViewAdapter mAdapter;
     private String mSharedPreferenceName, mDefaultValue = "";
@@ -63,11 +62,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         ArrayList<PostObject> arrayOfPosts = new ArrayList<PostObject>();
+        mRecyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         mAdapter = new MyRecyclerViewAdapter(this, arrayOfPosts);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         showPost();
 
         Intent intent = getIntent();
@@ -92,23 +92,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if(toolbar != null){
-            setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        if(mToolbar != null){
+            setSupportActionBar(mToolbar);
         }
 
-        toolbar_bottom = (Toolbar) findViewById(R.id.toolbar_bottom);
-        if(toolbar_bottom != null){
+        mToolbarBottom = (Toolbar) findViewById(R.id.toolbar_bottom);
+        if(mToolbarBottom != null){
             //initToolbarBottom();
-            editText = (EditText) findViewById(R.id.bottom_edittext);
 
-            imageViewSend = (ImageView) findViewById(R.id.bottom_send_btn);
-            imageViewCamera = (ImageView) findViewById(R.id.bottom_camera_btn);
+            mEditText = (EditText) findViewById(R.id.bottom_edittext);
+            mImageViewCamera = (ImageView) findViewById(R.id.bottom_camera_btn);
+            mImageViewSend = (ImageView) findViewById(R.id.bottom_send_btn);
 
-            imageViewSend.setOnClickListener(new View.OnClickListener(){
+            mImageViewSend.setOnClickListener(new View.OnClickListener(){
                 @Override
                     public void onClick(View v) {
-                    Log.d(TAG_INTENT, "send CLICKED");
                     savePostText("");
                 }
             });
@@ -118,22 +117,20 @@ public class MainActivity extends AppCompatActivity {
     public void showPost(){
         PostObject newFriend = new PostObject("Loofah", "I just love Border Collies!!");
         mAdapter.addItem(newFriend);
-        Log.d(TAG_INTENT, "SHOW PAST");
-
     }
 
     public void savePostText(String post){
         if(post == "")
-            post = editText.getText().toString();
+            post = mEditText.getText().toString();
+
         PostObject newFriend = new PostObject(mSharedPreferenceName, post);
         mAdapter.addItem(newFriend);
-        Log.d(TAG_INTENT, "SHOW NEW");
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
-        editText.setText("");
-        editText.setHint(R.string.edittext_hint);
+        mEditText.setText("");
+        mEditText.setHint(R.string.edittext_hint);
     }
 
     public void goToEmail(){
@@ -144,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, mail);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
         emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_text));
-        //emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://path/to/email/attachment"));
 
         String title = getResources().getString(R.string.chooser_email);
         Intent chooser = Intent.createChooser(emailIntent, title);
@@ -180,8 +176,6 @@ public class MainActivity extends AppCompatActivity {
         textIntent.setType("text/plain");
         textIntent.setData(Uri.parse("sms:" + number));
         textIntent.putExtra("sms_body", getString(R.string.text_text));
-//        textIntent.putExtra(Intent.EXTRA_STREAM, attachment);
-
         startIntent(textIntent);
     }
 
@@ -189,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
 //        if (intent.resolveActivity(getPackageManager()) != null) {
 //            startActivity(intent);
 //        }
-
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
         boolean isIntentSafe = activities.size() > 0;
@@ -278,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
-
 }
 
 

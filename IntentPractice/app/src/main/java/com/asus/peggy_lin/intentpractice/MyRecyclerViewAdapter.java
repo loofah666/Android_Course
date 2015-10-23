@@ -4,12 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -30,16 +27,14 @@ public class MyRecyclerViewAdapter extends RecyclerView
         public CardView cardView;
         public View mView;
         public String mSharedPreferenceName = "";
-        public LinearLayout ll;
 
         public PostObjectHolder(View itemView) {
             super(itemView);
 
             this.mView = itemView;
-            name = (TextView) itemView.findViewById(R.id.card_tv_name);
-            post = (TextView) itemView.findViewById(R.id.card_tv_post);
-            cardView = (CardView) itemView.findViewById(R.id.cardview_post);
-            ll = (LinearLayout) itemView.findViewById(R.id.cardview_parentlayout);
+            this.name = (TextView) itemView.findViewById(R.id.card_tv_name);
+            this. post = (TextView) itemView.findViewById(R.id.card_tv_post);
+            this.cardView = (CardView) itemView.findViewById(R.id.cardview_post);
         }
     }
 
@@ -70,12 +65,11 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
         holder.name.setText(postObject.getmName());
         holder.post.setText(postObject.getmPost());
+
         if(postObject.getmName() == holder.mSharedPreferenceName){
             holder.cardView.setCardBackgroundColor(mContext.getResources().getColor(R.color.color_primary));
             holder.post.setTextColor(mContext.getResources().getColor(R.color.color_mypost_text));
             holder.name.setTextColor(mContext.getResources().getColor(R.color.color_mypost_name));
-
-            holder.ll.setGravity(Gravity.RIGHT);
         }
     }
 
