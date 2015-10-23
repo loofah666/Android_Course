@@ -1,8 +1,8 @@
 package com.asus.peggy_lin.intentpractice;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
@@ -12,24 +12,20 @@ import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ActionMenuView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -39,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
     public static final int PICK_CONTACT_REQUEST = 1;  // The request code
     private Toolbar toolbar, toolbar_bottom;
     private EditText editText;
-    private ActionMenuView amvMenu;
+//    private ActionMenuView amvMenu;
+    private ImageView imageViewCamera, imageViewSend;
+    private RecyclerView mRecyclerView;
+    private MyRecyclerViewAdapter mAdapter;
+    private String mSharedPreferenceName, mDefaultValue = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initToolbar();
+
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        mSharedPreferenceName = sharedPref.getString(getString(R.string.saved_name_str), mDefaultValue);
+//        savePreference();
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setTitle(getString(R.string.group_title));
@@ -59,10 +63,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        SearchView searchView = (SearchView) findViewById(R.id.layout_searchview);
-//        searchView.setIconifiedByDefault(true);
+        mRecyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
+        ArrayList<PostObject> arrayOfPosts = new ArrayList<PostObject>();
+        mAdapter = new MyRecyclerViewAdapter(this, arrayOfPosts);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        showPost();
 
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            String post_text = intent.getExtras().get("data").toString();
+            if (intent.getType().equals("text/plain")) {
+                savePostText(post_text);
+            }
+        }
+
+    }
+
+    private void savePreference(){
+        String newNameStr = "Peggy";
+        SharedPreferences sharedPref = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.saved_name_str), newNameStr);
+        editor.commit();
     }
 
     private void initToolbar() {
@@ -74,48 +100,38 @@ public class MainActivity extends AppCompatActivity {
         toolbar_bottom = (Toolbar) findViewById(R.id.toolbar_bottom);
         if(toolbar_bottom != null){
             //initToolbarBottom();
+            editText = (EditText) findViewById(R.id.bottom_edittext);
 
+            imageViewSend = (ImageView) findViewById(R.id.bottom_send_btn);
+            imageViewCamera = (ImageView) findViewById(R.id.bottom_camera_btn);
+
+            imageViewSend.setOnClickListener(new View.OnClickListener(){
+                @Override
+                    public void onClick(View v) {
+                    Log.d(TAG_INTENT, "send CLICKED");
+                    savePostText("");
+                }
+            });
         }
     }
 
-    public void initToolbarBottom(){
-//        amvMenu = (ActionMenuView) findViewById(R.id.amvMenu_bottom);
-//        amvMenu.getMenu().clear();
-//        getMenuInflater().inflate(R.menu.menu_bottom, amvMenu.getMenu());
-//
-//        editText = (EditText) findViewById(R.id.layout_edittext);
-//        editText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int etw = editText.getWidth();
-//                editText.setMaxWidth(etw);
-//                editText.setWidth(etw);
-//            }
-//        });
-//
-//        amvMenu.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem menuItem) {
-//                switch (menuItem.getItemId()) {
-//                    case R.id.action_send_bottom:
-//                        Log.d(TAG_INTENT, "action_send_bottom");
-//                        savePostText();
-//                        return true;
-//                    case R.id.action_camera_bottom:
-//                        Log.d(TAG_INTENT, "action_camera_bottom");
-//                        return true;
-//                }
-//                return onOptionsItemSelected(menuItem);
-//            }
-//        });
+    public void showPost(){
+        PostObject newFriend = new PostObject("Loofah", "I just love Border Collies!!");
+        mAdapter.addItem(newFriend);
+        Log.d(TAG_INTENT, "SHOW PAST");
+
     }
 
-    public void savePostText(){
-        String post = editText.getText().toString();
-        Log.d(TAG_INTENT, post);
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    public void savePostText(String post){
+        if(post == "")
+            post = editText.getText().toString();
+        PostObject newFriend = new PostObject(mSharedPreferenceName, post);
+        mAdapter.addItem(newFriend);
+        Log.d(TAG_INTENT, "SHOW NEW");
+
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
         editText.setText("");
         editText.setHint(R.string.edittext_hint);
     }
@@ -221,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_settings:
                 return true;
             case R.id.action_share:
-                savePostText();
+                savePostText(null);
                 return true;
             case R.id.action_send:
                 goToContacts();
@@ -230,4 +246,39 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void initToolbarBottom(){
+//        amvMenu = (ActionMenuView) findViewById(R.id.amvMenu_bottom);
+//        amvMenu.getMenu().clear();
+//        getMenuInflater().inflate(R.menu.menu_bottom, amvMenu.getMenu());
+//
+//        editText = (EditText) findViewById(R.id.layout_edittext);
+//        editText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int etw = editText.getWidth();
+//                editText.setMaxWidth(etw);
+//                editText.setWidth(etw);
+//            }
+//        });
+//
+//        amvMenu.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem menuItem) {
+//                switch (menuItem.getItemId()) {
+//                    case R.id.action_send_bottom:
+//                        Log.d(TAG_INTENT, "action_send_bottom");
+//                        savePostText();
+//                        return true;
+//                    case R.id.action_camera_bottom:
+//                        Log.d(TAG_INTENT, "action_camera_bottom");
+//                        return true;
+//                }
+//                return onOptionsItemSelected(menuItem);
+//            }
+//        });
+    }
+
 }
+
+

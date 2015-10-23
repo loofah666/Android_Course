@@ -46,7 +46,10 @@ public class MainActivity extends Activity {
     }
 
     public void goToEmail(View view){
-
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra("data", "I AM POSTING from another App~ \n I am from IntentActivity, hi");
+        startActivity(emailIntent);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){

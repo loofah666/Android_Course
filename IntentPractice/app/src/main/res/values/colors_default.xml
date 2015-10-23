@@ -16,5 +16,11 @@
     <color name="color_control_normal">@android:color/white</color>
     <color name="color_control_highlight">@color/md_teal_A400</color>
     <color name="color_navigation_bar">#727272</color>
+    <!-- CardView Theme -->
+    <color name="color_post_background">@color/md_blue_grey_100</color>
+    <color name="color_mypost_background">@color/md_pink_400</color>
+    <color name="color_post_text">@color/md_grey_900</color>
+    <color name="color_mypost_text">@android:color/white</color>
+    <color name="color_mypost_name">@color/md_teal_500</color>
 
 </resources>
