@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Theme -->
+    <color name="color_primary">@color/md_teal_500</color>
+    <color name="color_primaryDark">@color/md_teal_700</color>
+    <color name="color_primaryLight">@color/md_teal_100</color>
+    <color name="color_accent">@color/md_pink_400</color>
+    <color name="color_primary_text">@android:color/white</color>
+    <color name="color_title_text">@color/md_light_blue_600</color>
+    <color name="color_secondary_text">#727272</color>
+    <color name="color_text">@color/md_grey_900</color>
+    <color name="color_icons">@android:color/white</color>
+    <color name="color_divider">#B6B6B6</color>
+    <color name="color_window_background">@color/md_grey_100</color>
+    <!-- Base Theme v21 -->
+    <color name="color_control_normal">@android:color/white</color>
+    <color name="color_control_highlight">@color/md_teal_A400</color>
+    <color name="color_navigation_bar">#727272</color>
+    <!-- CardView Theme -->
+    <color name="color_post_background">@color/md_blue_grey_100</color>
+    <color name="color_mypost_background">@color/md_pink_400</color>
+    <color name="color_post_text">@color/md_grey_900</color>
+    <color name="color_mypost_text">@android:color/white</color>
+    <color name="color_mypost_name">@color/md_teal_500</color>
+
+</resources>

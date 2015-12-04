@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -27,6 +30,8 @@ public class MyRecyclerViewAdapter extends RecyclerView
         public CardView cardView;
         public View mView;
         public String mSharedPreferenceName = "";
+        public RelativeLayout mRelativeLayout;
+        public LinearLayout mContainer;
 
         public PostObjectHolder(View itemView) {
             super(itemView);
@@ -35,6 +40,9 @@ public class MyRecyclerViewAdapter extends RecyclerView
             this.name = (TextView) itemView.findViewById(R.id.card_tv_name);
             this. post = (TextView) itemView.findViewById(R.id.card_tv_post);
             this.cardView = (CardView) itemView.findViewById(R.id.cardview_post);
+            this.mRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.cardview_parentlayout);
+//            this.mContainer = (LinearLayout) itemView.findViewById(R.id.cardview_container);
+
         }
     }
 
@@ -63,14 +71,24 @@ public class MyRecyclerViewAdapter extends RecyclerView
         String defaultValue = "";
         holder.mSharedPreferenceName = sharedPref.getString(mContext.getResources().getString(R.string.saved_name_str), defaultValue);
 
-        holder.name.setText(postObject.getmName());
-        holder.post.setText(postObject.getmPost());
-
         if(postObject.getmName() == holder.mSharedPreferenceName){
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.name.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            holder.name.setLayoutParams(params);
+
+            RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams) holder.cardView.getLayoutParams();
+            params2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            params2.addRule(RelativeLayout.BELOW, R.id.card_tv_name);
+            holder.cardView.setLayoutParams(params2);
+
+
             holder.cardView.setCardBackgroundColor(mContext.getResources().getColor(R.color.color_primary));
             holder.post.setTextColor(mContext.getResources().getColor(R.color.color_mypost_text));
             holder.name.setTextColor(mContext.getResources().getColor(R.color.color_mypost_name));
         }
+
+        holder.name.setText(postObject.getmName());
+        holder.post.setText(postObject.getmPost());
     }
 
     public void addItem(final PostObject dataObj) {

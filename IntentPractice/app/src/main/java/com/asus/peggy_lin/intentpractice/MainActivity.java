@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         mSharedPreferenceName = sharedPref.getString(getString(R.string.saved_name_str), mDefaultValue);
-//        savePreference();
+        savePreference();
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setTitle(getString(R.string.group_title));
